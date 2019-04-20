@@ -1,25 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import { store } from './store';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import * as serviceWorker from './serviceWorker';
+import { connect } from 'react-redux';
+import { addMessage } from './action-creators/simpleAction';
 
-// class AppWrapper extends React.Component {
-//  render() {
-//    return (
-//      <Provider store={store}>
-//        <App />
-//      </Provider>
-//    );
-//  }
-// };
+const mapStateToProps = (state) => {
+ return {messages: state}
+};
+
+const mapDispatchToProps = (dispatch) => {
+ return {
+   submitNewMessage: (message) => {
+     dispatch(addMessage(message))
+   }
+ }
+};
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 ReactDOM.render(
      <Provider store={store}>
-       <App />
+       <Container />
      </Provider>, 
      document.getElementById('root'));
 

@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addMessage } from './action-creators/simpleAction';
+// import { connect } from 'react-redux';
+// import { addMessage } from './action-creators/simpleAction';
 import logo from './logo.svg';
 import './App.scss';
 
-const mapStateToProps = (state) => {
- return {messages: state}
-};
+//gives error undefined ReactRedux
+// React:
+// const Provider = ReactRedux.Provider;
+// const connect = ReactRedux.connect;
 
-const mapDispatchToProps = (dispatch) => {
- return {
-   submitNewMessage: (message) => {
-     dispatch(addMessage(message))
-   }
- }
-};
 
-class App extends React.Component {
+
+export class App extends React.Component {
 
  constructor(props) {
    super(props);
 
    this.state = {
-     input: 'hey'
+     input: ''
    }
 
    this.handleChange = this.handleChange.bind(this);
@@ -66,8 +61,18 @@ class App extends React.Component {
 
 // Change code above this line
 
+// const mapStateToProps = (state) => {
+//  return {messages: state}
+// };
 
+// const mapDispatchToProps = (dispatch) => {
+//  return {
+//    submitNewMessage: (message) => {
+//      dispatch(addMessage(message))
+//    }
+//  }
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
