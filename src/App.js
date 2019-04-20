@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addMessage } from './action-creators/simpleAction';
 import './App.scss';
+import Title from './Title';
 
 class App extends Component {
  constructor(props) {
@@ -32,6 +33,7 @@ class App extends Component {
  render() {
    return (
      <div>
+       <Title/>
        <h2>Type in a new Message:</h2>
        <input
          value={this.state.input}

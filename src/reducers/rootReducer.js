@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { messageReducer } from './messageReducer';
+import { messageReducer, titleReducer } from './messageReducer';
 
 /**
- * Usually when exporting combineReducers your give a key for each reducer,
+ * Usually when exporting combineReducers you give a key for each reducer,
  * followed by the reducer associated with it.
  */
-export default combineReducers({
-	messages: messageReducer
+export const rootReducer = combineReducers({
+	messages: messageReducer,
+	title: titleReducer
 });
