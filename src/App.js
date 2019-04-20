@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { addMessage } from './action-creators/simpleAction';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { addMessage } from './action-creators/simpleAction';
 import './App.scss';
 
-//gives error undefined ReactRedux
-// React:
-// const Provider = ReactRedux.Provider;
-// const connect = ReactRedux.connect;
-
-
-
-export class App extends React.Component {
-
+class App extends Component {
  constructor(props) {
    super(props);
 
@@ -47,32 +38,33 @@ export class App extends React.Component {
          onChange={this.handleChange}/><br/>
        <button onClick={this.submitMessage}>Submit</button>
        <ul>{
-         	this.props.messages.messageReducer.map( (message, idx) => {
-            return (
-            	<li key={idx}>{message}</li>
-            )
-           })
-         }
+         this.props.messages.map( (message, idx) => {
+           return (
+             <li key={idx}>{message}</li>
+           )
+         })
+       }
        </ul>
      </div>
    );
  }
 };
 
-// Change code above this line
+const mapStateToProps = ({ messages }) => {
+  /**
+   * Destructuring out messages from state and assigning it to the key
+   * messages, since the key and value are bother the same you can leave out
+   * messages: messages and just have messages, both are the same
+   */
+  return { messages }
+};
 
-// const mapStateToProps = (state) => {
-//  return {messages: state}
-// };
+const mapDispatchToProps = (dispatch) => {
+ return {
+   submitNewMessage: (message) => {
+     dispatch(addMessage(message))
+   }
+ }
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//  return {
-//    submitNewMessage: (message) => {
-//      dispatch(addMessage(message))
-//    }
-//  }
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);
